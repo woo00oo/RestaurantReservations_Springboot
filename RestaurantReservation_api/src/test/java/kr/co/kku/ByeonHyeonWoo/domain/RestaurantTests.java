@@ -23,6 +23,6 @@ class RestaurantTests {
         Restaurant restaurant = new Restaurant("test","test02");
         assertThat(restaurant.getInformation(),is("test in test02"));
     }
-    
+    //Commit test
 
 }
