@@ -1,0 +1,30 @@
+package kr.co.kku.ByeonHyeonWoo.interfaces;
+
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.hamcrest.core.StringContains.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@RunWith(SpringRunner.class) //스프링을 통한 test실행
+@WebMvcTest(RestaurantController.class)
+class RestaurantControllerTest {
+
+    @Autowired
+    private MockMvc mvc;
+
+    @Test
+    public void list() throws Exception {
+        mvc.perform(get("/restaurants"))
+            .andExpect(status().isOk())
+            .andExpect(content().string(
+                    containsString("\"name\":\"Bob zip\"")));
+    }
+
+}
