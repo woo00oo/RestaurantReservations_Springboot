@@ -1,9 +1,12 @@
 package kr.co.kku.ByeonHyeonWoo.interfaces;
 
+import kr.co.kku.ByeonHyeonWoo.domain.RestaurantsRepository;
+import kr.co.kku.ByeonHyeonWoo.domain.RestaurantsRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -14,10 +17,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class) //스프링을 통한 test실행
 @WebMvcTest(RestaurantController.class)
-class RestaurantControllerTest {
+class RestaurantControlleTest {
 
     @Autowired
     private MockMvc mvc;
+
+    //의존성 주입
+    @SpyBean(RestaurantsRepositoryImpl.class)
+    private RestaurantsRepository restaurantsRepository;
 
     @Test
     public void list() throws Exception {
