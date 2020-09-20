@@ -1,5 +1,7 @@
 package kr.co.kku.ByeonHyeonWoo.interfaces;
 
+import kr.co.kku.ByeonHyeonWoo.domain.MenuItemRepository;
+import kr.co.kku.ByeonHyeonWoo.domain.MenuItemRepositoryImpl;
 import kr.co.kku.ByeonHyeonWoo.domain.RestaurantsRepository;
 import kr.co.kku.ByeonHyeonWoo.domain.RestaurantsRepositoryImpl;
 import org.junit.jupiter.api.Test;
@@ -26,6 +28,9 @@ class RestaurantControlleTest {
     @SpyBean(RestaurantsRepositoryImpl.class)
     private RestaurantsRepository restaurantsRepository;
 
+    @SpyBean(MenuItemRepositoryImpl.class)
+    private MenuItemRepository menuItemRepository;
+
     @Test
     public void list() throws Exception {
         mvc.perform(get("/restaurants"))
@@ -47,7 +52,11 @@ class RestaurantControlleTest {
                 ))
                 .andExpect(content().string(
                         containsString("\"name\":\"Bob zip\"")
+                ))
+                .andExpect(content().string(
+                        containsString("Kimchi")
                 ));
+
         mvc.perform(get("/restaurants/2020"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(
