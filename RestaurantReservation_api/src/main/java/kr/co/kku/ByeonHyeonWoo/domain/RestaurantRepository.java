@@ -2,7 +2,7 @@ package kr.co.kku.ByeonHyeonWoo.domain;
 
 import java.util.List;
 
-public interface RestaurantsRepository {
+public interface RestaurantRepository {
     //가게 목록
     List<Restaurant> findAll();
 

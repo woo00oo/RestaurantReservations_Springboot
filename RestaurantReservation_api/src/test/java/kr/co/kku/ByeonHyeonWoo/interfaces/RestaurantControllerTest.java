@@ -1,9 +1,10 @@
 package kr.co.kku.ByeonHyeonWoo.interfaces;
 
+import kr.co.kku.ByeonHyeonWoo.application.RestaurantService;
 import kr.co.kku.ByeonHyeonWoo.domain.MenuItemRepository;
 import kr.co.kku.ByeonHyeonWoo.domain.MenuItemRepositoryImpl;
-import kr.co.kku.ByeonHyeonWoo.domain.RestaurantsRepository;
-import kr.co.kku.ByeonHyeonWoo.domain.RestaurantsRepositoryImpl;
+import kr.co.kku.ByeonHyeonWoo.domain.RestaurantRepository;
+import kr.co.kku.ByeonHyeonWoo.domain.RestaurantRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,12 @@ class RestaurantControlleTest {
     @Autowired
     private MockMvc mvc;
 
+    @SpyBean(RestaurantService.class)
+    private RestaurantService restaurantService;
+
     //의존성 주입
-    @SpyBean(RestaurantsRepositoryImpl.class)
-    private RestaurantsRepository restaurantsRepository;
+    @SpyBean(RestaurantRepositoryImpl.class)
+    private RestaurantRepository restaurantsRepository;
 
     @SpyBean(MenuItemRepositoryImpl.class)
     private MenuItemRepository menuItemRepository;

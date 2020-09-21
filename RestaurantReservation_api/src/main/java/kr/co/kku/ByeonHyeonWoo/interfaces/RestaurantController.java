@@ -1,9 +1,10 @@
 package kr.co.kku.ByeonHyeonWoo.interfaces;
 
+import kr.co.kku.ByeonHyeonWoo.application.RestaurantService;
 import kr.co.kku.ByeonHyeonWoo.domain.MenuItem;
 import kr.co.kku.ByeonHyeonWoo.domain.MenuItemRepository;
 import kr.co.kku.ByeonHyeonWoo.domain.Restaurant;
-import kr.co.kku.ByeonHyeonWoo.domain.RestaurantsRepository;
+import kr.co.kku.ByeonHyeonWoo.domain.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,23 +16,19 @@ import java.util.List;
 public class RestaurantController {
 
     @Autowired
-    private RestaurantsRepository restaurantsRepository;
-
-    @Autowired
-    private MenuItemRepository menuItemRepository;
+    private RestaurantService restaurantService;
 
     @GetMapping("/restaurants")
     public List<Restaurant> list(){
-        List<Restaurant> restaurants = restaurantsRepository.findAll();
+        List<Restaurant> restaurants = restaurantService.getRestaurants();
         return restaurants;
     }
 
     @GetMapping("/restaurants/{id}")
     public Restaurant detail(@PathVariable("id") Long id){
-        Restaurant restaurant = restaurantsRepository.findById(id);
+        Restaurant restaurant = restaurantService.getRestaurant(id);
+        //기본정보 + 메뉴 정보
 
-        List<MenuItem> menuItems = menuItemRepository.findAllByRestaurantId(id);
-        restaurant.setMenuItems(menuItems);
 
         return restaurant;
     }

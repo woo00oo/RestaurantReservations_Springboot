@@ -18,7 +18,7 @@ public class Restaurant {
     }
 
 
-    public Long getID(){
+    public Long getId(){
         return  id;
     }
 
