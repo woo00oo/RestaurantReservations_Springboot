@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -15,10 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.core.StringContains.containsString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class) //스프링을 통한 test실행
 @WebMvcTest(RestaurantController.class)
@@ -68,8 +71,6 @@ class RestaurantControlleTest {
         Restaurant restaurant2 = new Restaurant(2020L,"Cyber Food","Seoul");
 
 
-
-
         given(restaurantService.getRestaurant(1004L)).willReturn(restaurant1);
         given(restaurantService.getRestaurant(2020L)).willReturn(restaurant2);
 
@@ -94,6 +95,19 @@ class RestaurantControlleTest {
                 .andExpect(content().string(
                         containsString("\"name\":\"Cyber Food\"")
                 ));
+    }
+
+
+    @Test
+    public void create() throws Exception{
+        mvc.perform(post("/restaurants")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":\"Beryong\",\"address\":\"Busan\"}"))
+                .andExpect(status().isCreated())
+                .andExpect(header().string("location","/restaurants/1234"))
+                .andExpect(content().string("{}"));
+
+        verify(restaurantService).addRestaurant(any());
     }
 
 
