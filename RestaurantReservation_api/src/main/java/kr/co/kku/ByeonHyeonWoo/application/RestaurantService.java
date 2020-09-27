@@ -5,10 +5,8 @@ import kr.co.kku.ByeonHyeonWoo.domain.MenuItemRepository;
 import kr.co.kku.ByeonHyeonWoo.domain.Restaurant;
 import kr.co.kku.ByeonHyeonWoo.domain.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.List;
 
 @Service
@@ -41,6 +39,7 @@ public class RestaurantService {
         return restaurants;
     }
 
-    public void addRestaurant(Restaurant restaurant) {
+    public Restaurant addRestaurant(Restaurant restaurant) {
+        return restaurantRepository.save(restaurant);
     }
 }

@@ -30,4 +30,11 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
                 .orElse(null); //최종 연산
         //스트림 소멸
     }
+
+    @Override
+    public Restaurant save(Restaurant restaurant) {
+        restaurant.setId(1234L);
+        restaurants.add(restaurant);
+        return restaurant;
+    }
 }

@@ -1,5 +1,7 @@
 package kr.co.kku.ByeonHyeonWoo.domain;
 
+
+
 import java.util.List;
 
 public interface RestaurantRepository {
@@ -8,4 +10,6 @@ public interface RestaurantRepository {
 
     //가게 상세 목록
     Restaurant findById(Long id);
+
+    Restaurant save(Restaurant restaurant);
 }

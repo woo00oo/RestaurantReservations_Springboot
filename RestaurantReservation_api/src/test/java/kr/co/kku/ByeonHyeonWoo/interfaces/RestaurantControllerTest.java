@@ -101,7 +101,7 @@ class RestaurantControlleTest {
     @Test
     public void create() throws Exception{
         mvc.perform(post("/restaurants")
-                .contentType(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON) //post방식은 타입을 지정해주어야함.
                 .content("{\"name\":\"Beryong\",\"address\":\"Busan\"}"))
                 .andExpect(status().isCreated())
                 .andExpect(header().string("location","/restaurants/1234"))
