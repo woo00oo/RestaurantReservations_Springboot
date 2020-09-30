@@ -44,7 +44,7 @@ class RestaurantServiceTest {
 
         given(restaurantRepository.findAll()).willReturn(restaurants);
 
-        given(restaurantRepository.findById(1004L)).willReturn(restaurant);
+        given(restaurantRepository.findById(1004L)).willReturn(java.util.Optional.of(restaurant));
     }
 
     private void mockMenuItemRepository() {
