@@ -7,11 +7,11 @@ import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity //클래스와 테이블과 매핑한다고 JPA에게 알려
 public class Restaurant {
 
-    @Id
-    @GeneratedValue
+    @Id //엔티티 클래스의 필드를 테이블에 기본키로 매핑한다.
+    @GeneratedValue //자동으로 식별자 생성
     private Long id;
 
     private String name;
