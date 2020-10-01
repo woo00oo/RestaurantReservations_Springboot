@@ -11,7 +11,7 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,6 +100,11 @@ class RestaurantControlleTest {
 
     @Test
     public void create() throws Exception{
+        given(restaurantService.addRestaurant(any())).will(invocation -> {
+            Restaurant restaurant = invocation.getArgument(0);
+            return new Restaurant(1234L,restaurant.getName(),restaurant.getAddress());
+        });
+
         mvc.perform(post("/restaurants")
                 .contentType(MediaType.APPLICATION_JSON) //post방식은 타입을 지정해주어야함.
                 .content("{\"name\":\"Beryong\",\"address\":\"Busan\"}"))
@@ -108,6 +113,17 @@ class RestaurantControlleTest {
                 .andExpect(content().string("{}"));
 
         verify(restaurantService).addRestaurant(any());
+    }
+
+    @Test
+    public void update() throws Exception{
+
+        mvc.perform(patch("/restaurants/1004")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":\"JOKER Bar\",\"address\":\"Busan\"}"))
+                .andExpect(status().isOk());
+
+        verify(restaurantService).updateRestaurant(1004L,"JOKER Bar","Busan");
     }
 
 
