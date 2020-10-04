@@ -2,6 +2,7 @@ package kr.co.kku.ByeonHyeonWoo.application;
 
 import kr.co.kku.ByeonHyeonWoo.domain.*;
 import org.junit.Before;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,7 +46,7 @@ class RestaurantServiceTest {
                 .id(1004L)
                 .name("Bob zip")
                 .address("Seoul")
-               // .menuItems(new ArrayList<MenuItem>())
+                // .menuItems(new ArrayList<MenuItem>())
                 .build();
         restaurants.add(restaurant);
 
@@ -73,7 +74,7 @@ class RestaurantServiceTest {
     }
 
     @Test
-    public void getRestaurant(){
+    public void getRestaurantWithExisted(){
 
         Restaurant restaurant = restaurantService.getRestaurant(1004L);
 
@@ -81,6 +82,12 @@ class RestaurantServiceTest {
 
         MenuItem menuItem = restaurant.getMenuItems().get(0);
         assertThat(menuItem.getName(), is("Kimchi"));
+    }
+
+    @Test
+    public void getRestaurantWithNotExisted(){
+        Assertions.assertThrows(RestaurantNotFoundException.class ,() -> restaurantService.getRestaurant(404L));
+        //Restaurant restaurant = restaurantService.getRestaurant(404L);
     }
 
     @Test
