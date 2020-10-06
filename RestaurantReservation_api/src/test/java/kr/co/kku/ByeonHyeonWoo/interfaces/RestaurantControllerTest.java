@@ -55,7 +55,7 @@ class RestaurantControlleTest {
             .address("Seoul")
             .build());
 
-
+        //테스트
         given(restaurantService.getRestaurants()).willReturn(restaurants);
 
         mvc.perform(get("/restaurants"))
