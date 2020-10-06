@@ -1,5 +1,6 @@
 package kr.co.kku.ByeonHyeonWoo.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -29,19 +30,9 @@ public class Restaurant {
     private String address;
 
     @Transient
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<MenuItem> menuItems;
 
-//    public Restaurant(String name, String address) {
-//        this.name = name;
-//        this.address = address;
-//    }
-//
-//    public Restaurant(Long id,String name,String address){
-//        this.id = id;
-//        this.name = name;
-//        this.address = address;
-//
-//    }
 
     public String getInformation() {
         return name+" in "+address;
