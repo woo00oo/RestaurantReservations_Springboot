@@ -29,7 +29,7 @@ public class Restaurant {
     @NotEmpty
     private String address;
 
-    @Transient
+    @Transient //엔티티 클래스 내의 특정 변수를 영속 필드에서 제외할 때 사용함.
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<MenuItem> menuItems;
 
