@@ -1,3 +1,6 @@
 rootProject.name = 'ByeonHyeonWoo'
 
-include 'RestaurantReservation_api'
+include 'common'
+include 'RestaurantReservation_admin_api'
+
+

@@ -1,5 +1,6 @@
 package kr.co.kku.ByeonHyeonWoo.domain;
 
+//import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
