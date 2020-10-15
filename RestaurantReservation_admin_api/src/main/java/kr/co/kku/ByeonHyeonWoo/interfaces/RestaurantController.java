@@ -22,24 +22,25 @@ public class RestaurantController {
     @Autowired
     private RestaurantService restaurantService;
 
+    //가게 목록
     @GetMapping("/restaurants")
     public List<Restaurant> list(){
         List<Restaurant> restaurants = restaurantService.getRestaurants();
         return restaurants;
     }
 
+    //가게 상세 정보
     @GetMapping("/restaurants/{id}")
     public Restaurant detail(@PathVariable("id") Long id){
         Restaurant restaurant = restaurantService.getRestaurant(id);
         //기본정보 + 메뉴 정보
-
 
         return restaurant;
     }
 
     //가게 삽입
     @PostMapping("/restaurants")
-    public ResponseEntity<?> create(@Valid @RequestBody Restaurant resource)
+    public ResponseEntity<?> create(@Valid @RequestBody Restaurant resource) //HTTP 요청 몸체를 자바 객체로 반환
             throws URISyntaxException {
         Restaurant restaurant = restaurantService.addRestaurant(
                 Restaurant.builder()
