@@ -41,6 +41,7 @@ class RestaurantServiceTest {
         //Restaurant restaurant = new Restaurant(1004L,"Bob zip","Seoul"); 멤버 변수가 추가 될 경우 새롭게 생성자를 만들어줘야하는 번거러움이 덜해짐.
         Restaurant restaurant = Restaurant.builder()
                 .id(1004L)
+                .categoryId(1L)
                 .name("Bob zip")
                 .address("Seoul")
                 // .menuItems(new ArrayList<MenuItem>())
