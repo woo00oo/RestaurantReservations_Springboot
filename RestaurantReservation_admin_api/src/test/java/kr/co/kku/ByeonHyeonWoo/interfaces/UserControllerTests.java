@@ -68,9 +68,9 @@ public class UserControllerTests {
 
     @Test
     public void update() throws Exception {
-        mvc.perform(patch("/users")
+        mvc.perform(patch("/users/1004")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\":1004,\"email\":\"admin@example.com\","+
+                .content("{\"email\":\"admin@example.com\","+
                         "\"name\":\"Administrator\",\"level\":100}"))
                 .andExpect(status().isOk());
 

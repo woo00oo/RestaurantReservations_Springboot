@@ -1,9 +1,6 @@
 package kr.co.kku.ByeonHyeonWoo.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,12 +20,15 @@ public class User {
     private Long id;
 
     @NotEmpty
+    @Setter
     private String email;
 
     @NotEmpty
+    @Setter
     private String name;
 
     @NotNull
+    @Setter
     private Long level;
 
 
