@@ -31,6 +31,7 @@ public class UserService {
         User user = User.builder()
                     .email(email)
                     .name(name)
+                    .level(1L)
                     .build();
 
         return userRepository.save(user);
@@ -44,5 +45,13 @@ public class UserService {
         user.setEmail(email);
         user.setLevel(level);
         return user;
+    }
+
+    public User deactiveUser(Long id) {
+        //TODO: restaurantService의 예외처리 참고.
+        User user = userRepository.findById(id).orElse(null);
+        user.deativate();
+        return user;
+
     }
 }

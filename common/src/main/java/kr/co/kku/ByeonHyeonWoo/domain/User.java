@@ -32,8 +32,15 @@ public class User {
     private Long level;
 
 
-    public Boolean isAdmin() {
+    public boolean isAdmin() {
         return level >= 100;
     }
 
+    public boolean isActive() {
+        return level > 0;
+    }
+
+    public void deativate() {
+        level = 0L;
+    }
 }

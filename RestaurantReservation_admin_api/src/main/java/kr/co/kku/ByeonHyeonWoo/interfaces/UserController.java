@@ -48,6 +48,14 @@ public class UserController {
         User user = userService.updateUser(id,email,name,level);
     }
 
+    @DeleteMapping("/users/{id}")
+    public String delete(
+                @PathVariable("id") Long id
+    ){
+        userService.deactiveUser(id);
+        return "{}";
+    }
+
 
     //1. User list
     //2. User create ->회원가입
