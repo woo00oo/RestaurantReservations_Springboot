@@ -40,6 +40,8 @@ public class SessionControllerTests {
                 .andExpect(header().string("location","/session"))
                 .andExpect(content().string("{\"accessToken\":\"ACCESSTOKEN\"}"));
 
+        verify(userService).authenticate(eq("tester@example.com"),eq("test"));
+
 
 
     }
